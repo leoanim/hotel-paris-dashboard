@@ -1,8 +1,8 @@
 from dash import Dash, html, dcc, Input, Output, dash_table
 import dash_bootstrap_components as dbc
-import table_data
-import update
-import accueil
+from . import table_data
+from . import update
+from . import accueil
 
 
 # Load data
