@@ -2,10 +2,14 @@ import pandas as pd
 import numpy as np
 import datetime
 import plotly.express as px
+import os
 
+def get_file_path(filename):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, "static", filename)
 
 def figure():
-    df_total = pd.read_csv("stat.csv", sep=";")
+    df_total = pd.read_csv(get_file_path("stat.csv"), sep=";")
     fig = px.line(df_total, x="date", y="mean", markers=True, color_discrete_sequence = [ "#82DAD0"])
     return fig
 
@@ -30,10 +34,10 @@ def moyenne_mois(df):
         mois.append(price)
         moyenne.append(mois)
     df_moyenne = pd.DataFrame(data=moyenne, columns=['date', 'mean'])
-    df_moyenne.to_csv("stat.csv",index=False,sep=";")
+    df_moyenne.to_csv(get_file_path("stat.csv"), index=False, sep=";")
 
 
-df= pd.read_csv("test_carte.csv", sep=";")
+df = pd.read_csv(get_file_path("test_carte.csv"), sep=";")
 #moyenne_mois(df)
 
 #df.loc[df['start_date']=='11-04-2022','start_date'] = "04-11-2022"
