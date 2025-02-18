@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
+import os
 
 def columns():
-    df = pd.read_csv("test_carte.csv", sep=";")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(current_dir, "static", "test_carte.csv")
+    df = pd.read_csv(csv_path, sep=";")
 
     lenght = len(df.columns)
 

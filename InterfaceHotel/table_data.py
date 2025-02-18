@@ -1,4 +1,5 @@
 import sys
+import os
 from dash import dash_table, html, dcc
 import pandas as pd
 from . import columns
@@ -29,7 +30,10 @@ def table_type(df_column):
     else:
         return 'any'
 
-df = pd.read_csv("test_carte.csv", sep=";")
+# Utiliser un chemin relatif pour le fichier CSV
+current_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(current_dir, "static", "test_carte.csv")
+df = pd.read_csv(csv_path, sep=";")
 df_col = df.drop(['gps','nb_adulte','nb_enfant','nb_chambre'], axis=1)
 table = dash_table.DataTable( id = 'table_data',
                               columns=[{'name': i, 'id': i, 'type': table_type(df_col[i])} for i in df_col.columns],
