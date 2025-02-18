@@ -1,7 +1,7 @@
 import sys
 from dash import dash_table, html, dcc
 import pandas as pd
-import columns
+from . import columns
 
 
 stars_choice,date_choice,adulte_choice,enfant_choice,room_choice,lenght = columns.columns()
